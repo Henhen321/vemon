@@ -1,0 +1,19 @@
+#This is an example webapp.io configuration for NodeJS
+FROM vm/ubuntu:18.04
+# To note: Layerfiles create VMs, *not* containers!
+
+# Install node
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash && \
+    apt install nodejs && \
+    rm -f /etc/apt/sources.list.d/nodesource.list
+
+# Install dependencies, including http-server
+COPY package.json package-lock.json ./
+RUN npm install
+
+COPY . .
+
+# Define npm start command
+RUN npm run start
+
+EXPOSE WEBSITE http://localhost:8000
