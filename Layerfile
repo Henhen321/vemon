@@ -8,9 +8,9 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash && \
     rm -f /etc/apt/sources.list.d/nodesource.list
 
 # Install dependencies, including http-server
-RUN git clone https://github.com/Henhen321/vemon
 
 COPY package.json
+
 RUN npm install
 
 COPY . .
